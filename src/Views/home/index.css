@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, rgba(231, 240, 242, 0.3) 60%, #ffffff 40%);
+}
+
+/* INDEX */
+.container {
+  padding: 100px 150px 100px 180px;
+}
+
+/* SECTION 1*/
+.container .section1 {
+}
+
+.container .section1 .title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 90px;
+}
+
+.container .section1 .navigation {
+  float: right;
+  font-family: 'Ubuntu', sans-serif;
+  border-right: rgba(0, 0, 0, 0.1) solid 1px;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  padding: 10px 20px 10px 0;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.container .section1 .navigation div {
+  cursor: pointer;
+}
+
+.container .section1 .navigation .top {
+  margin-bottom: 30px;
+}
+
+/* SECTION 2*/
+.container .section2 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.container .section2 .left-side {
+  width: 40%;
+}
+
+.container .section2 .left-side .shop-now {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 25px;
+  border: 0;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.container .section2 .right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 60%;
+  text-align: right;
+}
+
+.container .section2 .right-side .jargon {
+  font-size: 50px;
+  margin-bottom: 90px;
+  font-weight: 300;
+}
+
+.container .section2 .right-side .jargon span {
+  font-weight: 700;
+}
+
+.container .section2 .right-side .description {
+  width: 30%;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: justify;
+  text-justify: inter-word;
+  border-top: rgba(0, 0, 0, 0.1) solid 1px;
+  padding: 20px 0 0 80px;
+}
+
+/* SECTION 3 */
+.container .section3 {
+  float: right;
+  width: 70%;
+  margin-top: 80px;
+}
+
+.container .section3 .pages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: end;
+  width: 100%;
+}
+
+.container .section3 .pages .page {
+  position: relative;
+  width: 300px;
+  height: 180px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container .section3 .pages .page .text {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  text-transform: uppercase;
+  text-align: end;
+}
+
+.container .section3 .pages .page .text .title {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+}
+
+.container .section3 .pages .page .text .subtitle {
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  margin-top: 5px;
+}
