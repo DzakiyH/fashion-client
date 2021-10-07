@@ -1,42 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap');
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
 input:focus,
 select:focus {
   outline: none;
 }
 
-.container {
+.container-shop {
   padding: 50px 150px;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 /* TOP PART */
-.container .top-part {
+.container-shop .top-part {
   display: flex;
   align-items: center;
 }
 
-.container .top-part .shop-name {
+.container-shop .top-part .shop-name {
   width: 70%;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300;
   font-size: 50px;
 }
 
-.container .top-part .search {
+.container-shop .top-part .search {
   position: relative;
   width: 15%;
   border-bottom: 1px solid #c4c4c4;
   height: 40px;
 }
 
-.container .top-part .search input {
+.container-shop .top-part .search input {
   position: absolute;
   top: 10px;
   font-family: 'Roboto', sans-serif;
@@ -51,11 +47,11 @@ select:focus {
   width: 80%;
 }
 
-.container .top-part .search input:focus {
+.container-shop .top-part .search input:focus {
   color: #000;
 }
 
-.container .top-part .search button {
+.container-shop .top-part .search button {
   position: absolute;
   border: none;
   background-color: #fff;
@@ -65,7 +61,7 @@ select:focus {
   cursor: pointer;
 }
 
-.container .top-part .cart {
+.container-shop .top-part .cart {
   width: 15%;
   display: flex;
   justify-content: flex-end;
@@ -75,17 +71,17 @@ select:focus {
 }
 
 /* MIDDLE PART */
-.container .middle-part {
+.container-shop .middle-part {
   display: flex;
   margin-top: 100px;
 }
 
-.container .middle-part .features {
+.container-shop .middle-part .features {
   width: 15%;
   align-self: flex-end;
 }
 
-.container .middle-part .features ul {
+.container-shop .middle-part .features ul {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -95,40 +91,40 @@ select:focus {
   padding-left: 25px;
 }
 
-.container .middle-part .features ul li {
+.container-shop .middle-part .features ul li {
   margin-top: 40px;
   cursor: pointer;
 }
 
-.container .middle-part .features ul li.top-list {
+.container-shop .middle-part .features ul li.top-list {
   font-family: 'Ubuntu', sans-serif;
 }
 
-.container .middle-part .features ul li.active {
+.container-shop .middle-part .features ul li.active {
   font-weight: 900;
 }
 
-.container .middle-part .product-list {
+.container-shop .middle-part .product-list {
   width: 70%;
 }
 
-.container .middle-part .product-list .products {
+.container-shop .middle-part .product-list .products {
   display: none;
 }
 
-.container .middle-part .product-list .products.active {
+.container-shop .middle-part .product-list .products.active {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 60px;
 }
 
-.container .middle-part .product-list .products.active a {
+.container-shop .middle-part .product-list .products.active a {
   text-decoration: none;
   color: #000;
 }
 
-.container .middle-part .product-list .products.active .product {
+.container-shop .middle-part .product-list .products.active .product {
   display: flex;
   align-items: flex-end;
   background-color: rgba(231, 240, 242, 0.3);
@@ -137,18 +133,23 @@ select:focus {
   cursor: pointer;
 }
 
-.container .middle-part .product-list .products.product2 .product {
+.container-shop .middle-part .product-list .products.product2 .product {
   background-color: rgba(231, 240, 242, 1);
 }
 
-.container .middle-part .product-list .products.active .product .description {
+.container-shop
+  .middle-part
+  .product-list
+  .products.active
+  .product
+  .description {
   margin: 0 0 25px 20px;
   font-family: 'Ubuntu', sans-serif;
   text-transform: uppercase;
   font-weight: 500;
 }
 
-.container
+.container-shop
   .middle-part
   .product-list
   .products.active
@@ -159,7 +160,7 @@ select:focus {
   font-weight: 900;
 }
 
-.container
+.container-shop
   .middle-part
   .product-list
   .products.active
@@ -170,11 +171,11 @@ select:focus {
   margin-top: 5px;
 }
 
-.container .middle-part .filters {
+.container-shop .middle-part .filters {
   width: 15%;
 }
 
-.container .middle-part .filters ul {
+.container-shop .middle-part .filters ul {
   float: right;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 500;
@@ -185,18 +186,18 @@ select:focus {
   padding-right: 25px;
 }
 
-.container .middle-part .filters ul li {
+.container-shop .middle-part .filters ul li {
   margin-bottom: 40px;
   cursor: pointer;
 }
 
-.container .middle-part .filters ul li.active {
+.container-shop .middle-part .filters ul li.active {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
 }
 
 /* BOTTOM PART */
-.container .bottom-part {
+.container-shop .bottom-part {
   justify-self: center;
   align-self: center;
   margin-top: 100px;
@@ -204,12 +205,12 @@ select:focus {
   padding: 10px 40px 0 40px;
 }
 
-.container .bottom-part ul {
+.container-shop .bottom-part ul {
   list-style-type: none;
   padding: 0;
 }
 
-.container .bottom-part ul li {
+.container-shop .bottom-part ul li {
   display: inline-block;
   margin: 0 15px;
   color: #e7f0f2;
@@ -218,6 +219,6 @@ select:focus {
   cursor: pointer;
 }
 
-.container .bottom-part ul .product-navigation.active {
+.container-shop .bottom-part ul .product-navigation.active {
   color: #000;
 }

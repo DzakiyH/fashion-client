@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap');
 
 /* INDEX */
-.container {
+.container-home {
   margin: 0;
   padding: 0;
   background: linear-gradient(90deg, rgba(231, 240, 242, 0.3) 60%, #ffffff 40%);

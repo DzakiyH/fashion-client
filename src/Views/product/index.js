@@ -5,7 +5,7 @@ import './index.css';
 
 const Product = () => {
   return (
-    <div className='container'>
+    <div className='container-product'>
       <div className='cart'>
         <i className='fas fa-shopping-cart'></i>
       </div>
