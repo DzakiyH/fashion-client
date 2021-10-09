@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MiddlePart = () => {
   return (
@@ -16,14 +17,14 @@ const MiddlePart = () => {
       <div className='product-list'>
         <div className='product product1 active'>
           {/* THIS IS WHERE YOU LOOP */}
-          <a href='#'>
+          <Link to={{ pathname: '/product' }}>
             <div className='product'>
               <div className='description'>
                 <div className='title'>title here</div>
                 <div className='category'>category</div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
       <div className='filters'>

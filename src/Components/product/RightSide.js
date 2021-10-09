@@ -9,11 +9,13 @@ const RightSide = () => {
       </Link>
       <div className='item-name'>
         <span className='item-color'>Color</span>
+        <br />
         <span className='item-type'>Item Type / Name</span>
       </div>
       <div className='item-price'>
         <span className='current-price'>$19.99</span>
-        <span className='current-price'>$39.99</span>
+        <br />
+        <span className='original-price'>$39.99</span>
       </div>
       <div className='item-description'>
         <div className='short-description'>Kacamata tampan dan berani</div>
