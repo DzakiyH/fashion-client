@@ -1,30 +1,66 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const MiddlePart = () => {
+  const { products, features, productsShowed } = useSelector(
+    (state) => state.productsReducer
+  );
+
+  const dispatch = useDispatch();
+
+  const featureClicked = (key) => {
+    dispatch({
+      type: 'FEATURE_ACTIVE',
+      payload: key,
+    });
+  };
+
   return (
     <div className='middle-part'>
       <div className='features'>
         <ul className='featured-list'>
-          <li className='list-top'>Featured</li>
-          <li className='active'>Category 1</li>
-          <li>Category 2</li>
-          <li>Category 3</li>
-          <li>Category 4</li>
-          <li>Category 5</li>
+          <li className='top-list'>features</li>
+          {features.map((feature) => {
+            return (
+              <li
+                key={feature.id}
+                className={feature.isActive ? 'active' : ''}
+                onClick={() => featureClicked(feature.id)}
+              >
+                {feature.feature}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className='product-list'>
-        <div className='product product1 active'>
-          {/* THIS IS WHERE YOU LOOP */}
-          <Link to={{ pathname: '/product' }}>
-            <div className='product'>
-              <div className='description'>
-                <div className='title'>title here</div>
-                <div className='category'>category</div>
+        <div className='products'>
+          {products.map((product) => {
+            return (
+              <div
+                className='product'
+                key={product.id}
+                style={{
+                  backgroundImage: `url(${product.source})`,
+                  backgroundSize: 'cover',
+                }}
+              >
+                <div className='description'>
+                  <div className='title'>title here</div>
+                  <div className='category'>category</div>
+                </div>
               </div>
+            );
+          })}
+          {/* THIS IS WHERE YOU LOOP */}
+
+          {/* <div className='product'>
+            <div className='description'>
+              <div className='title'>title here</div>
+              <div className='category'>category</div>
             </div>
-          </Link>
+          </div> */}
         </div>
       </div>
       <div className='filters'>

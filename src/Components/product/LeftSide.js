@@ -1,11 +1,13 @@
 import React from 'react';
-import productMen from '../../Assets/images/product_men.png';
 
 const LeftSide = () => {
   return (
     <div className='left-side'>
       <div className='image'>
-        <img src={productMen} alt='product' />
+        <img
+          src={`${process.env.PUBLIC_URL}/images/product_men.png`}
+          alt='product'
+        />
         <div className='navigation'>
           <button className='arrow-btn'>
             <i className='fas fa-chevron-left'></i>

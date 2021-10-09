@@ -98,6 +98,7 @@ select:focus {
 
 .container-shop .middle-part .features ul li.top-list {
   font-family: 'Ubuntu', sans-serif;
+  font-weight: 800;
 }
 
 .container-shop .middle-part .features ul li.active {
@@ -109,40 +110,21 @@ select:focus {
 }
 
 .container-shop .middle-part .product-list .products {
-  display: none;
-}
-
-.container-shop .middle-part .product-list .products.active {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 60px;
 }
 
-.container-shop .middle-part .product-list .products.active a {
-  text-decoration: none;
-  color: #000;
-}
-
-.container-shop .middle-part .product-list .products.active .product {
+.container-shop .middle-part .product-list .products .product {
   display: flex;
   align-items: flex-end;
-  background-color: rgba(231, 240, 242, 0.3);
   height: 200px;
   width: 300px;
   cursor: pointer;
 }
 
-.container-shop .middle-part .product-list .products.product2 .product {
-  background-color: rgba(231, 240, 242, 1);
-}
-
-.container-shop
-  .middle-part
-  .product-list
-  .products.active
-  .product
-  .description {
+.container-shop .middle-part .product-list .products .product .description {
   margin: 0 0 25px 20px;
   font-family: 'Ubuntu', sans-serif;
   text-transform: uppercase;
@@ -152,7 +134,7 @@ select:focus {
 .container-shop
   .middle-part
   .product-list
-  .products.active
+  .products
   .product
   .description
   .title {
@@ -163,7 +145,7 @@ select:focus {
 .container-shop
   .middle-part
   .product-list
-  .products.active
+  .products
   .product
   .description
   .category {
