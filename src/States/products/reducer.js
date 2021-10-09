@@ -45,7 +45,7 @@ const initialState = {
     {
       id: 8,
       title: 'eyeglasses',
-      category: ['headware', 'unisex'],
+      category: ['headwear', 'unisex'],
       source: '/images/eyeglasses.jpg',
     },
     {
@@ -58,37 +58,42 @@ const initialState = {
   features: [
     {
       id: 1,
-      feature: 'clothes',
+      category: 'all',
       isActive: false,
     },
     {
       id: 2,
-      feature: 'male',
+      category: 'clothes',
       isActive: false,
     },
     {
       id: 3,
-      feature: 'female',
+      category: 'male',
       isActive: false,
     },
     {
       id: 4,
-      feature: 'unisex',
+      category: 'female',
       isActive: false,
     },
     {
       id: 5,
-      feature: 'footwear',
+      category: 'unisex',
       isActive: false,
     },
     {
       id: 6,
-      feature: 'headwear',
+      category: 'footwear',
       isActive: false,
     },
     {
       id: 7,
-      feature: 'handwear',
+      category: 'headwear',
+      isActive: false,
+    },
+    {
+      id: 8,
+      category: 'handwear',
       isActive: false,
     },
   ],
@@ -104,6 +109,22 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         productsShowed: state.products,
       };
+    case 'FEATURED_PRODUCTS':
+      if (payload === 'all') {
+        return {
+          ...state,
+          productsShowed: state.products,
+        };
+      } else {
+        const featuredProducts = state.products.filter((product) => {
+          return product.category.includes(payload);
+        });
+
+        return {
+          ...state,
+          productsShowed: featuredProducts,
+        };
+      }
     case 'FEATURE_ACTIVE':
       const newFeatures = state.features.map((feature) => {
         return {

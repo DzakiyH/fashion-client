@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const MiddlePart = () => {
-  const { products, features, productsShowed } = useSelector(
+  const { features, productsShowed } = useSelector(
     (state) => state.productsReducer
   );
 
   const dispatch = useDispatch();
 
-  const featureClicked = (key) => {
+  useEffect(() => {
+    dispatch({
+      type: 'GET_PRODUCTS',
+    });
+  }, []);
+
+  const featureClicked = (key, feature) => {
     dispatch({
       type: 'FEATURE_ACTIVE',
       payload: key,
+    });
+    dispatch({
+      type: 'FEATURED_PRODUCTS',
+      payload: feature,
     });
   };
 
@@ -21,14 +31,14 @@ const MiddlePart = () => {
       <div className='features'>
         <ul className='featured-list'>
           <li className='top-list'>features</li>
-          {features.map((feature) => {
+          {features.map((item) => {
             return (
               <li
-                key={feature.id}
-                className={feature.isActive ? 'active' : ''}
-                onClick={() => featureClicked(feature.id)}
+                key={item.id}
+                className={item.isActive ? 'active' : ''}
+                onClick={() => featureClicked(item.id, item.category)}
               >
-                {feature.feature}
+                {item.category}
               </li>
             );
           })}
@@ -36,7 +46,7 @@ const MiddlePart = () => {
       </div>
       <div className='product-list'>
         <div className='products'>
-          {products.map((product) => {
+          {productsShowed.map((product) => {
             return (
               <div
                 className='product'
