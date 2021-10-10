@@ -5,54 +5,63 @@ const initialState = {
       title: 'men clothes',
       category: ['clothes', 'male'],
       source: '/images/men_clothes.jpg',
+      rating: 3,
     },
     {
       id: 2,
       title: 'women clothes',
       category: ['clothes', 'female'],
       source: '/images/women_clothes.jpg',
+      rating: 4,
     },
     {
       id: 3,
       title: 'boy clothes',
       category: ['clothes', 'male'],
       source: '/images/boy_clothes.jpg',
+      rating: 2,
     },
     {
       id: 4,
       title: 'girl clothes',
       category: ['clothes', 'female'],
       source: '/images/girl_clothes.jpg',
+      rating: 3,
     },
     {
       id: 5,
       title: 'jeans',
       category: ['clothes', 'unisex'],
       source: '/images/jeans.jpg',
+      rating: 1,
     },
     {
       id: 6,
       title: 'socks',
       category: ['footwear', 'unisex'],
       source: '/images/socks.jpg',
+      rating: 1,
     },
     {
       id: 7,
       title: 'shoes',
       category: ['footwear', 'unisex'],
       source: '/images/shoes.jpg',
+      rating: 2,
     },
     {
       id: 8,
       title: 'eyeglasses',
       category: ['headwear', 'unisex'],
       source: '/images/eyeglasses.jpg',
+      rating: 3,
     },
     {
       id: 9,
       title: 'wristwatch',
       category: ['handwear', 'unisex'],
       source: '/images/watch.jpg',
+      rating: 3,
     },
   ],
   features: [
@@ -97,6 +106,33 @@ const initialState = {
       isActive: false,
     },
   ],
+  filters: [
+    {
+      id: 1,
+      filter: 'all',
+      isActive: false,
+    },
+    {
+      id: 2,
+      filter: 1,
+      isActive: false,
+    },
+    {
+      id: 3,
+      filter: 2,
+      isActive: false,
+    },
+    {
+      id: 4,
+      filter: 3,
+      isActive: false,
+    },
+    {
+      id: 5,
+      filter: 4,
+      isActive: false,
+    },
+  ],
   productsShowed: [],
 };
 
@@ -138,6 +174,36 @@ const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         features: newFeatures,
+      };
+
+    case 'FILTER_BY_RATING':
+      if (payload === 'all') {
+        return {
+          ...state,
+          productsShowed: state.products,
+        };
+      } else {
+        const filteredProducts = state.products.filter((product) => {
+          return product.rating === payload;
+        });
+
+        return {
+          ...state,
+          productsShowed: filteredProducts,
+        };
+      }
+
+    case 'FILTER_ACTIVE':
+      const newFilters = state.filters.map((filter) => {
+        return {
+          ...filter,
+          isActive: filter.id === payload ? true : false,
+        };
+      });
+
+      return {
+        ...state,
+        filters: newFilters,
       };
 
     case 'SEARCH_PRODUCTS':

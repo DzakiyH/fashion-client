@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
 
 const MiddlePart = () => {
-  const { features, productsShowed } = useSelector(
+  const { features, filters, productsShowed } = useSelector(
     (state) => state.productsReducer
   );
 
@@ -24,6 +24,17 @@ const MiddlePart = () => {
     dispatch({
       type: 'FEATURED_PRODUCTS',
       payload: feature,
+    });
+  };
+
+  const ratingFilterClicked = (rating, id) => {
+    dispatch({
+      type: 'FILTER_BY_RATING',
+      payload: rating,
+    });
+    dispatch({
+      type: 'FILTER_ACTIVE',
+      payload: id,
     });
   };
 
@@ -62,6 +73,11 @@ const MiddlePart = () => {
                   <div className='category'>
                     category: {product.category.join(', ')}
                   </div>
+                  <div className='rating'>
+                    {Array.from({ length: product.rating }, (item, index) => (
+                      <i key={index} class='fas fa-star'></i>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
@@ -70,12 +86,27 @@ const MiddlePart = () => {
       </div>
       <div className='filters'>
         <ul className='filter-list'>
-          <li>all</li>
-          <li className='active'>filter 1</li>
-          <li>filter 2</li>
-          <li>filter 3</li>
-          <li>filter 4</li>
-          <li>filter 5</li>
+          {filters.map((filter) => {
+            return filter.filter === 'all' ? (
+              <li
+                key={filter.id}
+                onClick={() => ratingFilterClicked(filter.filter, filter.id)}
+              >
+                {filter.filter}
+              </li>
+            ) : (
+              <li
+                key={filter.id}
+                onClick={() => ratingFilterClicked(filter.filter, filter.id)}
+              >
+                <div className='rating'>
+                  {Array.from({ length: filter.filter }, (item, index) => (
+                    <i key={index} class='fas fa-star'></i>
+                  ))}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

@@ -144,6 +144,7 @@ select:focus {
   .description
   .title {
   font-size: 18px;
+  font-weight: 500;
 }
 
 .container-shop
@@ -154,6 +155,17 @@ select:focus {
   .description
   .category {
   font-size: 11px;
+  margin-top: 5px;
+}
+
+.container-shop
+  .middle-part
+  .product-list
+  .products
+  .product
+  .description
+  .rating {
+  font-size: 12px;
   margin-top: 5px;
 }
 
@@ -173,6 +185,7 @@ select:focus {
 }
 
 .container-shop .middle-part .filters ul li {
+  text-align: center;
   margin-bottom: 40px;
   cursor: pointer;
 }
@@ -180,6 +193,17 @@ select:focus {
 .container-shop .middle-part .filters ul li.active {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
+}
+
+.container-shop .middle-part .filters ul li .rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-shop .middle-part .filters ul li .rating i {
+  font-size: 14px;
+  color: #f9cc01;
 }
 
 /* BOTTOM PART */
