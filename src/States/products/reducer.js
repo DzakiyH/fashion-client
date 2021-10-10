@@ -109,6 +109,7 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         productsShowed: state.products,
       };
+
     case 'FEATURED_PRODUCTS':
       if (payload === 'all') {
         return {
@@ -125,6 +126,7 @@ const productsReducer = (state = initialState, action) => {
           productsShowed: featuredProducts,
         };
       }
+
     case 'FEATURE_ACTIVE':
       const newFeatures = state.features.map((feature) => {
         return {
@@ -137,6 +139,23 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         features: newFeatures,
       };
+
+    case 'SEARCH_PRODUCTS':
+      if (payload === '') {
+        return {
+          ...state,
+          productsShowed: state.products,
+        };
+      } else {
+        const productSearched = state.products.filter((product) => {
+          return product.title.includes(payload);
+        });
+
+        return {
+          ...state,
+          productsShowed: productSearched,
+        };
+      }
 
     default:
       return state;

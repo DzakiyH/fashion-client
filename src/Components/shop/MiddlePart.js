@@ -13,6 +13,7 @@ const MiddlePart = () => {
     dispatch({
       type: 'GET_PRODUCTS',
     });
+    // eslint-disable-next-line
   }, []);
 
   const featureClicked = (key, feature) => {
@@ -57,20 +58,14 @@ const MiddlePart = () => {
                 }}
               >
                 <div className='description'>
-                  <div className='title'>title here</div>
-                  <div className='category'>category</div>
+                  <div className='title'>{product.title}</div>
+                  <div className='category'>
+                    category: {product.category.join(', ')}
+                  </div>
                 </div>
               </div>
             );
           })}
-          {/* THIS IS WHERE YOU LOOP */}
-
-          {/* <div className='product'>
-            <div className='description'>
-              <div className='title'>title here</div>
-              <div className='category'>category</div>
-            </div>
-          </div> */}
         </div>
       </div>
       <div className='filters'>

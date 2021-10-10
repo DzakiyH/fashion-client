@@ -1,11 +1,25 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 const TopPart = () => {
+  const dispatch = useDispatch();
+
+  const searchInputChange = (e) => {
+    dispatch({
+      type: 'SEARCH_PRODUCTS',
+      payload: e.target.value,
+    });
+  };
+
   return (
     <div className='top-part'>
       <div className='shop-name'>Your Shop Name</div>
-      <form action='#' className='search'>
-        <input type='search' placeholder='Product' />
+      <form className='search'>
+        <input
+          type='search'
+          placeholder='Product'
+          onChange={searchInputChange}
+        />
         <button className='search-icon'>
           <i className='fas fa-search'></i>
         </button>
