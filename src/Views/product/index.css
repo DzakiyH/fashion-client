@@ -35,6 +35,7 @@ select:focus {
 
 .container-inside .left-side .image {
   position: relative;
+  width: 80%;
 }
 
 .container-inside .left-side .image img {

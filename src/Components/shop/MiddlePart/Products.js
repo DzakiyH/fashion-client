@@ -17,6 +17,7 @@ const Products = () => {
               style={{
                 backgroundImage: `url(${product.source})`,
                 backgroundSize: 'cover',
+                textDecoration: 'none',
               }}
             >
               <div className='description'>
@@ -26,7 +27,7 @@ const Products = () => {
                 </div>
                 <div className='rating'>
                   {Array.from({ length: product.rating }, (item, index) => (
-                    <i key={index} class='fas fa-star'></i>
+                    <i key={index} className='fas fa-star'></i>
                   ))}
                 </div>
               </div>

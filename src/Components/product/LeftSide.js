@@ -1,13 +1,10 @@
 import React from 'react';
 
-const LeftSide = () => {
+const LeftSide = ({ imageSource }) => {
   return (
     <div className='left-side'>
       <div className='image'>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/product_men.png`}
-          alt='product'
-        />
+        <img src={`${process.env.PUBLIC_URL}${imageSource}`} alt='product' />
         <div className='navigation'>
           <button className='arrow-btn'>
             <i className='fas fa-chevron-left'></i>

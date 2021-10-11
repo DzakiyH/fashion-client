@@ -35,7 +35,7 @@ const Features = () => {
             >
               <div className='rating'>
                 {Array.from({ length: filter.filter }, (item, index) => (
-                  <i key={index} class='fas fa-star'></i>
+                  <i key={index} className='fas fa-star'></i>
                 ))}
               </div>
             </li>

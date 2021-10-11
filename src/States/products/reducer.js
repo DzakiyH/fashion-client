@@ -1,5 +1,5 @@
 const initialState = {
-  products: [
+  shops: [
     {
       id: 1,
       title: 'men clothes',
@@ -62,6 +62,18 @@ const initialState = {
       category: ['handwear', 'unisex'],
       source: '/images/watch.jpg',
       rating: 3,
+    },
+  ],
+  products: [
+    {
+      id: 1,
+      title: 'men clothes',
+      source: '/images/product_men.png',
+    },
+    {
+      id: 2,
+      title: 'shoes',
+      source: '/images/product_shoes.jpg',
     },
   ],
   features: [
@@ -143,17 +155,17 @@ const productsReducer = (state = initialState, action) => {
     case 'GET_PRODUCTS':
       return {
         ...state,
-        productsShowed: state.products,
+        productsShowed: state.shops,
       };
 
     case 'FEATURED_PRODUCTS':
       if (payload === 'all') {
         return {
           ...state,
-          productsShowed: state.products,
+          productsShowed: state.shops,
         };
       } else {
-        const featuredProducts = state.products.filter((product) => {
+        const featuredProducts = state.shops.filter((product) => {
           return product.category.includes(payload);
         });
 
@@ -180,10 +192,10 @@ const productsReducer = (state = initialState, action) => {
       if (payload === 'all') {
         return {
           ...state,
-          productsShowed: state.products,
+          productsShowed: state.shops,
         };
       } else {
-        const filteredProducts = state.products.filter((product) => {
+        const filteredProducts = state.shops.filter((product) => {
           return product.rating === payload;
         });
 
@@ -210,10 +222,10 @@ const productsReducer = (state = initialState, action) => {
       if (payload === '') {
         return {
           ...state,
-          productsShowed: state.products,
+          productsShowed: state.shops,
         };
       } else {
-        const productSearched = state.products.filter((product) => {
+        const productSearched = state.shops.filter((product) => {
           return product.title.includes(payload);
         });
 
