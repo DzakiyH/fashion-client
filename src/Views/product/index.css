@@ -36,10 +36,7 @@ select:focus {
 .container-inside .left-side .image {
   position: relative;
   width: 80%;
-}
-
-.container-inside .left-side .image img {
-  width: 100%;
+  height: 780px;
 }
 
 .container-inside .left-side .image .navigation {

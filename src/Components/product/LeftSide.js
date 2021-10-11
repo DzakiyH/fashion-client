@@ -1,10 +1,16 @@
 import React from 'react';
 
 const LeftSide = ({ imageSource }) => {
+  console.log(imageSource);
   return (
     <div className='left-side'>
-      <div className='image'>
-        <img src={`${process.env.PUBLIC_URL}${imageSource}`} alt='product' />
+      <div
+        className='image'
+        style={{
+          backgroundImage: `url(${imageSource})`,
+          backgroundSize: 'cover',
+        }}
+      >
         <div className='navigation'>
           <button className='arrow-btn'>
             <i className='fas fa-chevron-left'></i>
