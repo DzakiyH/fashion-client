@@ -72,8 +72,43 @@ const initialState = {
     },
     {
       id: 2,
+      title: 'women clothes',
+      source: '/images/product_women.jpg',
+    },
+    {
+      id: 3,
+      title: 'boy clothes',
+      source: '/images/product_boy.jpg',
+    },
+    {
+      id: 4,
+      title: 'girl clothes',
+      source: '/images/product_girl.jpg',
+    },
+    {
+      id: 5,
+      title: 'jeans',
+      source: '/images/product_jeans.jpg',
+    },
+    {
+      id: 6,
+      title: 'socks',
+      source: '/images/product_socks.jpg',
+    },
+    {
+      id: 7,
       title: 'shoes',
       source: '/images/product_shoes.jpg',
+    },
+    {
+      id: 8,
+      title: 'eyeglasses',
+      source: '/images/product_eyeglasses.jpg',
+    },
+    {
+      id: 9,
+      title: 'wristwatch',
+      source: '/images/product_wristwatch.jpg',
     },
   ],
   features: [
@@ -145,6 +180,7 @@ const initialState = {
       isActive: false,
     },
   ],
+  cart: [],
   productsShowed: [],
 };
 

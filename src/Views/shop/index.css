@@ -62,7 +62,7 @@ select:focus {
 }
 
 .container-shop .top-part .cart {
-  width: 15%;
+  max-width: 15%;
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const RightSide = () => {
   return (
     <div className='right-side'>
-      <Link to={{ pathname: '/' }}>
+      <Link to={{ pathname: '/shop' }}>
         <div className='back-btn'>go back</div>
       </Link>
       <div className='item-name'>

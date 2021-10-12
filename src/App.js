@@ -3,6 +3,7 @@ import Home from './Views/home';
 import Product from './Views/product';
 import Shop from './Views/shop';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
