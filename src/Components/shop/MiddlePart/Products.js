@@ -1,9 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Products = () => {
   const { productsShowed } = useSelector((state) => state.productsReducer);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({
+      type: 'EMPTY_PRODUCT',
+    });
+  }, []);
+
+  const productClicked = (id) => {
+    dispatch({
+      type: 'ADD_PRODUCT',
+      payload: id,
+    });
+  };
 
   return (
     <div className='product-list'>
@@ -11,6 +26,7 @@ const Products = () => {
         {productsShowed.map((product) => {
           return (
             <Link
+              onClick={() => productClicked(product.id)}
               to={{ pathname: `/product/${product.title}` }}
               className='product'
               key={product.id}

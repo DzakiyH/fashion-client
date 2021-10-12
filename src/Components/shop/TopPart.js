@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Cart from '../Cart';
-import { IsFirstRender } from '../../Utils/IsFirstRender';
 
 const TopPart = () => {
   const [cartModal, setCartModal] = useState(false);
-
-  const isFirst = IsFirstRender();
 
   const dispatch = useDispatch();
 

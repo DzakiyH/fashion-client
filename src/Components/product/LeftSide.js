@@ -1,7 +1,6 @@
 import React from 'react';
 
 const LeftSide = ({ imageSource }) => {
-  console.log(imageSource);
   return (
     <div className='left-side'>
       <div

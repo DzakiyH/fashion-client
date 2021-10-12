@@ -180,6 +180,7 @@ const initialState = {
       isActive: false,
     },
   ],
+  product: {},
   cart: [],
   productsShowed: [],
 };
@@ -270,6 +271,60 @@ const productsReducer = (state = initialState, action) => {
           productsShowed: productSearched,
         };
       }
+
+    case 'ADD_PRODUCT':
+      const product = state.products.find((item) => {
+        return item.id === payload;
+      });
+
+      return {
+        ...state,
+        product,
+      };
+
+    case 'EMPTY_PRODUCT':
+      return {
+        ...state,
+        product: [],
+      };
+
+    case 'ADD_TO_CART':
+      let cartTemp = {};
+      let newCartItem = [];
+
+      if (Array.isArray(state.cart) && state.cart.length) {
+        cartTemp = state.product;
+        const sameProduct = state.cart.find((item) => item.id === cartTemp.id);
+
+        if (sameProduct) {
+          newCartItem = state.cart;
+          newCartItem.map((item) => {
+            return item.id === cartTemp.id ? (item.quantity += 1) : null;
+          });
+
+          return {
+            ...state,
+            cart: newCartItem,
+          };
+        } else {
+          cartTemp.quantity = 1;
+          newCartItem = state.cart;
+          newCartItem.push(cartTemp);
+          return {
+            ...state,
+            cart: newCartItem,
+          };
+        }
+      }
+
+      const newProduct = state.product;
+      newProduct.quantity = 1;
+      newCartItem.push(newProduct);
+
+      return {
+        ...state,
+        cart: newCartItem,
+      };
 
     default:
       return state;

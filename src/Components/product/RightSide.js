@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const RightSide = () => {
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch({
+      type: 'ADD_TO_CART',
+    });
+  };
+
   return (
     <div className='right-side'>
       <Link to={{ pathname: '/shop' }}>
@@ -35,7 +44,9 @@ const RightSide = () => {
         </select>
       </div>
       <div className='cart-section'>
-        <button className='cart-btn'>add to cart</button>
+        <button className='cart-btn' onClick={addToCart}>
+          add to cart
+        </button>
         <div className='advertisement'>
           <span>Mens</span>
           <br />
