@@ -326,6 +326,14 @@ const productsReducer = (state = initialState, action) => {
         cart: newCartItem,
       };
 
+    case 'REMOVE_CART_ITEM':
+      const newCart = state.cart.filter((item) => item.id !== payload);
+
+      return {
+        ...state,
+        cart: newCart,
+      };
+
     default:
       return state;
   }
