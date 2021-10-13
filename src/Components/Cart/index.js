@@ -16,6 +16,7 @@ const Cart = ({ isShown, modalToggle }) => {
     } else {
       setShow(isShown);
     }
+    // eslint-disable-next-line
   }, [isShown]);
 
   const handleClose = () => {

@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RightSide = () => {
+  const { product } = useSelector((state) => state.productsReducer);
+
   const dispatch = useDispatch();
 
   const addToCart = () => {
     dispatch({
       type: 'ADD_TO_CART',
     });
+    alert(`${product.title} sudah ditambahkan ke dalam cart anda!`);
   };
 
   return (
@@ -19,7 +22,7 @@ const RightSide = () => {
       <div className='item-name'>
         <span className='item-color'>Color</span>
         <br />
-        <span className='item-type'>Item Type / Name</span>
+        <span className='item-type'>{product.title.toUpperCase()}</span>
       </div>
       <div className='item-price'>
         <span className='current-price'>$19.99</span>
