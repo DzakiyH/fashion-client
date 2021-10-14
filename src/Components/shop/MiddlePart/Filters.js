@@ -1,34 +1,45 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-const Filters = () => {
-  const { features } = useSelector((state) => state.productsReducer);
+const Features = () => {
+  const { filters } = useSelector((state) => state.productsReducer);
 
   const dispatch = useDispatch();
 
-  const featureClicked = (key, feature) => {
+  const ratingFilterClicked = (rating, id) => {
     dispatch({
-      type: 'FEATURE_ACTIVE',
-      payload: key,
+      type: 'FILTER_BY_RATING',
+      payload: rating,
     });
     dispatch({
-      type: 'FEATURED_PRODUCTS',
-      payload: feature,
+      type: 'FILTER_ACTIVE',
+      payload: id,
     });
   };
 
   return (
-    <div className='features'>
-      <ul className='featured-list'>
-        <li className='top-list'>features</li>
-        {features.map((item) => {
-          return (
+    <div className='filters'>
+      <ul className='filter-list'>
+        {filters.map((filter) => {
+          return filter.filter === 'all' ? (
             <li
-              key={item.id}
-              className={item.isActive ? 'active' : ''}
-              onClick={() => featureClicked(item.id, item.category)}
+              key={filter.id}
+              onClick={() => ratingFilterClicked(filter.filter, filter.id)}
+              className={filter.isActive ? 'active top-filter' : 'top-filter'}
             >
-              {item.category}
+              {filter.filter}
+            </li>
+          ) : (
+            <li
+              key={filter.id}
+              onClick={() => ratingFilterClicked(filter.filter, filter.id)}
+              className={filter.isActive ? 'active star' : 'star'}
+            >
+              <div className='rating'>
+                {Array.from({ length: filter.filter }, (item, index) => (
+                  <i key={index} className='fas fa-star'></i>
+                ))}
+              </div>
             </li>
           );
         })}
@@ -37,4 +48,4 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+export default Features;

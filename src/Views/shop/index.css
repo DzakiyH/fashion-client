@@ -198,7 +198,15 @@ select:focus {
   cursor: pointer;
 }
 
-.container-shop .middle-part .filters ul li.active {
+.container-shop .middle-part .filters ul .star {
+  opacity: 0.5;
+}
+
+.container-shop .middle-part .filters ul .star.active {
+  opacity: 1;
+}
+
+.container-shop .middle-part .filters ul .top-filter.active {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
 }

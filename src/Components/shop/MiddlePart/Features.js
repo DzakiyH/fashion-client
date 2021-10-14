@@ -1,43 +1,34 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-const Features = () => {
-  const { filters } = useSelector((state) => state.productsReducer);
+const Filters = () => {
+  const { features } = useSelector((state) => state.productsReducer);
 
   const dispatch = useDispatch();
 
-  const ratingFilterClicked = (rating, id) => {
+  const featureClicked = (key, feature) => {
     dispatch({
-      type: 'FILTER_BY_RATING',
-      payload: rating,
+      type: 'FEATURE_ACTIVE',
+      payload: key,
     });
     dispatch({
-      type: 'FILTER_ACTIVE',
-      payload: id,
+      type: 'FEATURED_PRODUCTS',
+      payload: feature,
     });
   };
 
   return (
-    <div className='filters'>
-      <ul className='filter-list'>
-        {filters.map((filter) => {
-          return filter.filter === 'all' ? (
+    <div className='features'>
+      <ul className='featured-list'>
+        <li className='top-list'>features</li>
+        {features.map((item) => {
+          return (
             <li
-              key={filter.id}
-              onClick={() => ratingFilterClicked(filter.filter, filter.id)}
+              key={item.id}
+              className={item.isActive ? 'active' : ''}
+              onClick={() => featureClicked(item.id, item.category)}
             >
-              {filter.filter}
-            </li>
-          ) : (
-            <li
-              key={filter.id}
-              onClick={() => ratingFilterClicked(filter.filter, filter.id)}
-            >
-              <div className='rating'>
-                {Array.from({ length: filter.filter }, (item, index) => (
-                  <i key={index} className='fas fa-star'></i>
-                ))}
-              </div>
+              {item.category}
             </li>
           );
         })}
@@ -46,4 +37,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default Filters;

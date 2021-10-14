@@ -16,9 +16,9 @@ const MiddlePart = () => {
 
   return (
     <div className='middle-part'>
-      <Filters />
-      <Products />
       <Features />
+      <Products />
+      <Filters />
     </div>
   );
 };
