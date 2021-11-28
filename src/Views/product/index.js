@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LeftSide from '../../Components/product/LeftSide';
 import RightSide from '../../Components/product/RightSide';
 import Cart from '../../Components/Cart';
+import NavbarLayout from '../../Components/Layout/NavbarLayout';
 import './index.css';
 
 const Product = () => {
@@ -30,16 +31,18 @@ const Product = () => {
   };
 
   return (
-    <div className='container-product'>
-      <div className='cart'>
-        <i className='fas fa-shopping-cart' onClick={modalToggle}></i>
+    <NavbarLayout>
+      <div className='container-product'>
+        <div className='cart'>
+          <i className='fas fa-shopping-cart' onClick={modalToggle}></i>
+        </div>
+        <div className='container-inside'>
+          <LeftSide />
+          <RightSide />
+        </div>
+        <Cart isShown={cartModal} modalToggle={modalToggle} />
       </div>
-      <div className='container-inside'>
-        <LeftSide />
-        <RightSide />
-      </div>
-      <Cart isShown={cartModal} modalToggle={modalToggle} />
-    </div>
+    </NavbarLayout>
   );
 };
 
