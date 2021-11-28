@@ -8,8 +8,8 @@ const NavbarLayout = (props) => {
         <Container>
           <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
           <Nav>
-            <Nav.Link href='#home'>Login</Nav.Link>
-            <Nav.Link href='#features'>Register</Nav.Link>
+            <Nav.Link href='/login-user'>Login</Nav.Link>
+            <Nav.Link href='/register-user'>Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

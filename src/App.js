@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Views/home';
 import Product from './Views/product';
 import Shop from './Views/shop';
-import Navbar from './Components/Layout/NavbarLayout';
+import LoginUser from './Views/loginUser';
+import RegisterUser from './Views/registerUser';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,8 +21,11 @@ function App() {
           <Route path='/shop'>
             <Shop />
           </Route>
-          <Route path='/navbar'>
-            <Navbar />
+          <Route path='/login-user'>
+            <LoginUser />
+          </Route>
+          <Route path='/register-user'>
+            <RegisterUser />
           </Route>
         </Switch>
       </Router>
