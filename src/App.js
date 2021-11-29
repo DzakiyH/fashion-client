@@ -4,6 +4,7 @@ import Product from './Views/product';
 import Shop from './Views/shop';
 import LoginUser from './Views/loginUser';
 import RegisterUser from './Views/registerUser';
+import CartList from './Views/cartList';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path='/register-user'>
             <RegisterUser />
+          </Route>
+          <Route path='/cart-list'>
+            <CartList />
           </Route>
         </Switch>
       </Router>
