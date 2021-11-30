@@ -5,6 +5,7 @@ import Shop from './Views/shop';
 import LoginUser from './Views/loginUser';
 import RegisterUser from './Views/registerUser';
 import CartList from './Views/cartList';
+import Payment from './Views/payment';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path='/cart-list'>
             <CartList />
+          </Route>
+          <Route path='/payment'>
+            <Payment />
           </Route>
         </Switch>
       </Router>
