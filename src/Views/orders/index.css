@@ -1,0 +1,61 @@
+.orders {
+  margin: auto;
+  margin-top: 50px;
+  width: 60%;
+}
+
+.orders .orders-header {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding-left: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.orders .orders-header .product {
+  width: 60%;
+  text-align: start;
+}
+
+.orders .orders-header .status {
+  width: 20%;
+}
+
+.orders .orders-header .action {
+  width: 20%;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.order-item .order {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
+}
+
+.order-item .order img {
+  width: 100px;
+}
+
+.order-item .order .order-name {
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+
+.order-item .status {
+  width: 20%;
+  margin-bottom: 0;
+}
+
+.order-item .action {
+  width: 20%;
+  margin-bottom: 0;
+}
