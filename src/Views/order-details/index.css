@@ -1,0 +1,45 @@
+.order-details {
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.order-details .order-detail {
+  display: flex;
+  justify-content: center;
+}
+
+.order-details .order-detail .order-verified,
+.order-details .order-detail .order-sent,
+.order-details .order-detail .order-received {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  align-items: center;
+  font-size: 30px;
+  color: aquamarine;
+}
+
+.order-details .order {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.order-details .order .product-image {
+  width: 30%;
+}
+
+.order-details .order .product-image img {
+  width: 100px;
+}
+
+.order-details .order .product-name {
+  width: 30%;
+}
+
+.order-details .order .status-delivery {
+  width: 30%;
+}

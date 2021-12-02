@@ -7,6 +7,7 @@ import RegisterUser from './Views/registerUser';
 import CartList from './Views/cartList';
 import Payment from './Views/payment';
 import Orders from './Views/orders';
+import OrderDetails from './Views/order-details';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route path='/orders'>
             <Orders />
+          </Route>
+          <Route path='/order-details'>
+            <OrderDetails />
           </Route>
         </Switch>
       </Router>
