@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import Home from './Views/home';
 import Product from './Views/product';
 import Shop from './Views/shop';
@@ -12,12 +17,14 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const isLogin = localStorage.getItem('isLogin');
+
   return (
     <div className='App'>
       <Router>
         <Switch>
           <Route path='/' exact>
-            <Home />
+            {isLogin ? <Home /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/product/:productName'>
             <Product />
