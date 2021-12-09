@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Filters = () => {
-  const { features } = useSelector((state) => state.productsReducer);
+  const { categories } = useSelector((state) => state.productsReducer);
 
   const dispatch = useDispatch();
 
@@ -21,14 +21,14 @@ const Filters = () => {
     <div className='features'>
       <ul className='featured-list'>
         <li className='top-list'>features</li>
-        {features.map((item) => {
+        {categories.map((item) => {
           return (
             <li
               key={item.id}
               className={item.isActive ? 'active' : ''}
-              onClick={() => featureClicked(item.id, item.category)}
+              onClick={() => featureClicked(item.id, item.name)}
             >
-              {item.category}
+              {item.name}
             </li>
           );
         })}

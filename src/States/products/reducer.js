@@ -1,158 +1,7 @@
 const initialState = {
-  shops: [
-    {
-      id: 1,
-      title: 'men clothes',
-      category: ['clothes', 'male'],
-      source: '/images/men_clothes.jpg',
-      rating: 3,
-    },
-    {
-      id: 2,
-      title: 'women clothes',
-      category: ['clothes', 'female'],
-      source: '/images/women_clothes.jpg',
-      rating: 4,
-    },
-    {
-      id: 3,
-      title: 'boy clothes',
-      category: ['clothes', 'male'],
-      source: '/images/boy_clothes.jpg',
-      rating: 2,
-    },
-    {
-      id: 4,
-      title: 'girl clothes',
-      category: ['clothes', 'female'],
-      source: '/images/girl_clothes.jpg',
-      rating: 3,
-    },
-    {
-      id: 5,
-      title: 'jeans',
-      category: ['clothes', 'unisex'],
-      source: '/images/jeans.jpg',
-      rating: 1,
-    },
-    {
-      id: 6,
-      title: 'socks',
-      category: ['footwear', 'unisex'],
-      source: '/images/socks.jpg',
-      rating: 1,
-    },
-    {
-      id: 7,
-      title: 'shoes',
-      category: ['footwear', 'unisex'],
-      source: '/images/shoes.jpg',
-      rating: 2,
-    },
-    {
-      id: 8,
-      title: 'eyeglasses',
-      category: ['headwear', 'unisex'],
-      source: '/images/eyeglasses.jpg',
-      rating: 3,
-    },
-    {
-      id: 9,
-      title: 'wristwatch',
-      category: ['handwear', 'unisex'],
-      source: '/images/watch.jpg',
-      rating: 3,
-    },
-  ],
-  products: [
-    {
-      id: 1,
-      title: 'men clothes',
-      source: '/images/product_men.png',
-    },
-    {
-      id: 2,
-      title: 'women clothes',
-      source: '/images/product_women.jpg',
-    },
-    {
-      id: 3,
-      title: 'boy clothes',
-      source: '/images/product_boy.jpg',
-    },
-    {
-      id: 4,
-      title: 'girl clothes',
-      source: '/images/product_girl.jpg',
-    },
-    {
-      id: 5,
-      title: 'jeans',
-      source: '/images/product_jeans.jpg',
-    },
-    {
-      id: 6,
-      title: 'socks',
-      source: '/images/product_socks.jpg',
-    },
-    {
-      id: 7,
-      title: 'shoes',
-      source: '/images/product_shoes.jpg',
-    },
-    {
-      id: 8,
-      title: 'eyeglasses',
-      source: '/images/product_eyeglasses.jpg',
-    },
-    {
-      id: 9,
-      title: 'wristwatch',
-      source: '/images/product_wristwatch.jpg',
-    },
-  ],
-  features: [
-    {
-      id: 1,
-      category: 'all',
-      isActive: false,
-    },
-    {
-      id: 2,
-      category: 'clothes',
-      isActive: false,
-    },
-    {
-      id: 3,
-      category: 'male',
-      isActive: false,
-    },
-    {
-      id: 4,
-      category: 'female',
-      isActive: false,
-    },
-    {
-      id: 5,
-      category: 'unisex',
-      isActive: false,
-    },
-    {
-      id: 6,
-      category: 'footwear',
-      isActive: false,
-    },
-    {
-      id: 7,
-      category: 'headwear',
-      isActive: false,
-    },
-    {
-      id: 8,
-      category: 'handwear',
-      isActive: false,
-    },
-  ],
+  shops: [],
+  products: [],
+  categories: [],
   filters: [
     {
       id: 1,
@@ -192,7 +41,28 @@ const productsReducer = (state = initialState, action) => {
     case 'GET_PRODUCTS':
       return {
         ...state,
-        productsShowed: state.shops,
+        productsShowed: payload,
+        shops: payload,
+      };
+
+    case 'GET_CATEGORIES':
+      payload.push({
+        id: 0,
+        name: 'all',
+      });
+      const categories = payload.map((category) => {
+        return {
+          ...category,
+          id: category.id + 1,
+          isActive: false,
+        };
+      });
+
+      categories.sort((a, b) => (a.id > b.id ? 1 : b.id > a.id ? -1 : 0));
+
+      return {
+        ...state,
+        categories,
       };
 
     case 'FEATURED_PRODUCTS':
@@ -202,27 +72,27 @@ const productsReducer = (state = initialState, action) => {
           productsShowed: state.shops,
         };
       } else {
-        const featuredProducts = state.shops.filter((product) => {
-          return product.category.includes(payload);
+        const productsByCategory = state.shops.filter((product) => {
+          return product.categories.name.includes(payload);
         });
 
         return {
           ...state,
-          productsShowed: featuredProducts,
+          productsShowed: productsByCategory,
         };
       }
 
     case 'FEATURE_ACTIVE':
-      const newFeatures = state.features.map((feature) => {
+      const newCategories = state.categories.map((category) => {
         return {
-          ...feature,
-          isActive: feature.id === payload ? true : false,
+          ...category,
+          isActive: category.id === payload ? true : false,
         };
       });
 
       return {
         ...state,
-        features: newFeatures,
+        categories: newCategories,
       };
 
     case 'FILTER_BY_RATING':

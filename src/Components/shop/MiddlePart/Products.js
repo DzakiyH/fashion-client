@@ -44,7 +44,7 @@ const Products = () => {
                 className='product'
                 key={product.id}
                 style={{
-                  backgroundImage: `url(${product.source})`,
+                  backgroundImage: `url(${product.image})`,
                   backgroundSize: 'cover',
                   textDecoration: 'none',
                 }}
@@ -52,13 +52,13 @@ const Products = () => {
                 <div className='description'>
                   <div className='title'>{product.title}</div>
                   <div className='category'>
-                    category: {product.category.join(', ')}
+                    category: {product.categories.name}
                   </div>
-                  <div className='rating'>
+                  {/* <div className='rating'>
                     {Array.from({ length: product.rating }, (item, index) => (
                       <i key={index} className='fas fa-star'></i>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </Link>
             );

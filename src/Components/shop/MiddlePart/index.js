@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import {
+  getAllProducts,
+  getAllCategories,
+} from '../../../States/products/action';
 import Filters from './Filters';
 import Products from './Products';
 import Features from './Features';
 
-const MiddlePart = () => {
-  const dispatch = useDispatch();
+const MiddlePart = (props) => {
+  const { getAllProducts, getAllCategories } = props;
 
   useEffect(() => {
-    dispatch({
-      type: 'GET_PRODUCTS',
-    });
+    getAllProducts();
+    getAllCategories();
     // eslint-disable-next-line
   }, []);
 
@@ -23,4 +26,9 @@ const MiddlePart = () => {
   );
 };
 
-export default MiddlePart;
+const mapDispatchToProps = (dispatch) => ({
+  getAllProducts: () => dispatch(getAllProducts()),
+  getAllCategories: () => dispatch(getAllCategories()),
+});
+
+export default connect(null, mapDispatchToProps)(MiddlePart);
