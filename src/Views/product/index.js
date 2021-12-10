@@ -1,47 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import LeftSide from '../../Components/product/LeftSide';
 import RightSide from '../../Components/product/RightSide';
-import Cart from '../../Components/Cart';
 import NavbarLayout from '../../Components/Layout/NavbarLayout';
+import { Spinner } from 'react-bootstrap';
 import './index.css';
 
 const Product = () => {
-  const { products } = useSelector((state) => state.productsReducer);
+  const { products, product } = useSelector((state) => state.productsReducer);
 
   let { productName } = useParams();
-  const [cartModal, setCartModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const product = products.find((item) => {
-      return item.title === productName;
-    });
+    if (products && products.length !== 0) {
+      const product = products.find((item) => {
+        return item.title.toLowerCase() === productName.toLowerCase();
+      });
 
-    dispatch({
-      type: 'ADD_PRODUCT',
-      payload: product.id,
-    });
+      dispatch({
+        type: 'ADD_PRODUCT',
+        payload: product.id,
+      });
+    }
     // eslint-disable-next-line
-  }, [productName]);
-
-  const modalToggle = () => {
-    setCartModal(!cartModal);
-  };
+  }, [products]);
 
   return (
     <NavbarLayout>
-      <div className='container-product'>
-        <div className='cart'>
-          <i className='fas fa-shopping-cart' onClick={modalToggle}></i>
+      {products && products.length !== 0 ? (
+        <div className='container-product'>
+          <Link to={{ pathname: `/cart-list` }} className='cart'>
+            <i className='fas fa-shopping-cart'></i>
+          </Link>
+          <div className='container-inside'>
+            {Object.keys(product).length !== 0 ? (
+              <LeftSide />
+            ) : (
+              <Spinner animation='border' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+              </Spinner>
+            )}
+            {Object.keys(product).length !== 0 ? (
+              <RightSide />
+            ) : (
+              <Spinner animation='border' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+              </Spinner>
+            )}
+          </div>
         </div>
-        <div className='container-inside'>
-          <LeftSide />
-          <RightSide />
+      ) : (
+        <div className='spinner'>
+          <Spinner animation='border' role='status'>
+            <span className='visually-hidden'>Loading...</span>
+          </Spinner>
         </div>
-        <Cart isShown={cartModal} modalToggle={modalToggle} />
-      </div>
+      )}
     </NavbarLayout>
   );
 };

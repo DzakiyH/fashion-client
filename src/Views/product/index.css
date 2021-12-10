@@ -21,6 +21,7 @@ select:focus {
   right: 9%;
   top: 7%;
   cursor: pointer;
+  color: #000;
 }
 
 .container-inside {
@@ -55,8 +56,12 @@ select:focus {
 }
 
 /* RIGHT SIDE */
-.container-inside .right-side {
+.container-inside .right {
+  width: 100%;
   margin-top: 50px;
+}
+
+.container-inside .right .right-side {
   display: flex;
   flex-direction: column;
 }

@@ -4,6 +4,9 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllProducts, getAllCategories } from './States/products/action';
 import Home from './Views/home';
 import Product from './Views/product';
 import Shop from './Views/shop';
@@ -16,7 +19,15 @@ import OrderDetails from './Views/order-details';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = (props) => {
+  const { getAllProducts, getAllCategories } = props;
+
+  useEffect(() => {
+    getAllProducts();
+    getAllCategories();
+    // eslint-disable-next-line
+  }, []);
+
   const isLogin = localStorage.getItem('isLogin');
 
   return (
@@ -54,6 +65,11 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  getAllProducts: () => dispatch(getAllProducts()),
+  getAllCategories: () => dispatch(getAllCategories()),
+});
+
+export default connect(null, mapDispatchToProps)(App);

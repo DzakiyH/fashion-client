@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import Cart from '../Cart';
+import { Link } from 'react-router-dom';
 
 const TopPart = () => {
-  const [cartModal, setCartModal] = useState(false);
-
   const dispatch = useDispatch();
 
   const searchInputChange = (e) => {
@@ -14,13 +12,8 @@ const TopPart = () => {
     });
   };
 
-  const modalToggle = () => {
-    setCartModal(!cartModal);
-  };
-
   return (
     <>
-      <Cart isShown={cartModal} modalToggle={modalToggle} />
       <div className='top-part'>
         <div className='shop-name'>Your Shop Name</div>
         <form className='search'>
@@ -33,9 +26,13 @@ const TopPart = () => {
             <i className='fas fa-search'></i>
           </button>
         </form>
-        <div className='cart' onClick={modalToggle}>
+        <Link
+          to={{ pathname: '/cart-list' }}
+          style={{ color: '#000' }}
+          className='cart'
+        >
           <i className='fas fa-shopping-cart'></i>
-        </div>
+        </Link>
       </div>
     </>
   );

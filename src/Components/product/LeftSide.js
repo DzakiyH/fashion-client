@@ -11,8 +11,8 @@ const LeftSide = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const prev = ArrayByIndex(product.id - 2, products);
-    const foll = ArrayByIndex(product.id, products);
+    const prev = ArrayByIndex(product.stateId - 2, products);
+    const foll = ArrayByIndex(product.stateId, products);
 
     setPreviousProduct(prev);
     setFollowingProduct(foll);
@@ -38,7 +38,7 @@ const LeftSide = () => {
       <div
         className='image'
         style={{
-          backgroundImage: `url(${product.source})`,
+          backgroundImage: `url(${product.image})`,
           backgroundSize: 'cover',
         }}
       >
