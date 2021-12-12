@@ -69,3 +69,11 @@
 .cart-item .remove {
   width: 10%;
 }
+
+.cart-list .button {
+  margin: auto;
+  margin-top: 50px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -6,8 +6,6 @@ import axios from 'axios';
 const RightSide = () => {
   const { product } = useSelector((state) => state.productsReducer);
 
-  const token = localStorage.getItem('token');
-
   const addToCart = async () => {
     try {
       const res = await axios.post(
@@ -17,12 +15,12 @@ const RightSide = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
 
-      if (res.data.code === 201) {
+      if (res && res.data.code === 201) {
         alert(`${product.title} has been successfully added to the cart`);
       } else {
         alert('error login');

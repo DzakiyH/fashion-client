@@ -21,14 +21,96 @@ export const getCartProducts = () => {
   }
 };
 
-export const getAllCategories = () => {
-  const request = axios.get('http://localhost:8000/product/category');
+export const updateProductQuantity = (quantity, product_id) => {
+  const request = axios.put(
+    'http://localhost:8000/cart/update-quantity',
+    { quantity, product_id },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+  );
 
   return (dispatch) => {
     request.then((response) => {
       dispatch({
-        type: 'GET_CATEGORIES',
+        type: 'UPDATE_PRODUCT_QUANTITY',
         payload: response.data.data,
+      });
+    });
+  };
+};
+
+export const removeProduct = (id) => {
+  const request = axios.delete(
+    `http://localhost:8000/cart/delete-product/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+  );
+
+  return (dispatch) => {
+    request.then(() => {
+      dispatch({
+        type: 'REMOVE_PRODUCT',
+        payload: id,
+      });
+    });
+  };
+};
+
+export const emptyCart = (id) => {
+  const request = axios.delete(`http://localhost:8000/cart/delete-cart/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+
+  return (dispatch) => {
+    request.then(() => {
+      dispatch({
+        type: 'EMPTY_CART',
+      });
+    });
+  };
+};
+
+export const getAllOrders = () => {
+  const request = axios.get(`http://localhost:8000/order`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+
+  return (dispatch) => {
+    request.then((response) => {
+      dispatch({
+        type: 'GET_ALL_ORDERS',
+        payload: response.data.data,
+      });
+    });
+  };
+};
+
+export const setOrderProducts = (products) => {
+  const request = axios.post(
+    `http://localhost:8000/order/order-products`,
+    products,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+  );
+
+  return (dispatch) => {
+    request.then(() => {
+      dispatch({
+        type: 'SET_ORDER_PRODUCTS',
+        payload: products,
       });
     });
   };

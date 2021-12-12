@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, connect } from 'react-redux';
+import useRouter from 'use-react-router';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import NavbarLayout from '../../Components/Layout/NavbarLayout';
+import { getCartProducts } from '../../States/cart/action';
 import { Card, Button } from 'react-bootstrap';
 import CartItem from '../../Components/cartlist/CartItem';
 import './index.css';
 
-const index = () => {
+const CartList = (props) => {
+  const { getCartProducts } = props;
+  const { cart, totalPayment } = useSelector((state) => state.cartReducer);
+  const { history } = useRouter();
+
+  useEffect(() => {
+    getCartProducts();
+  }, [getCartProducts]);
+
+  const setNewOrder = async () => {
+    try {
+      const res = await axios.post(
+        'http://localhost:8000/order/new-order',
+        { total_payment: totalPayment },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+
+      if (res.data.code === 201) {
+        history.push('/payment');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <NavbarLayout>
       <div className='cart-list'>
@@ -19,8 +52,26 @@ const index = () => {
               <li className='action'>action</li>
             </ul>
 
-            <CartItem />
-            <Button variant='primary'>Go somewhere</Button>
+            {cart && cart.length !== 0 && Object.keys(cart).length !== 0 ? (
+              cart.map((product) => {
+                return <CartItem key={product.id} product={product} />;
+              })
+            ) : (
+              <div
+                className='text-center'
+                style={{ fontSize: '20px', textTransform: 'uppercase' }}
+              >
+                your cart is empty
+              </div>
+            )}
+            <div className='button'>
+              <Link to={{ pathname: '/shop' }}>
+                <Button variant='primary'>Go Back</Button>
+              </Link>
+              <Button variant='success' onClick={setNewOrder}>
+                To Payment
+              </Button>
+            </div>
           </Card.Body>
         </Card>
       </div>
@@ -28,4 +79,8 @@ const index = () => {
   );
 };
 
-export default index;
+const mapDispatchToProps = (dispatch) => ({
+  getCartProducts: () => dispatch(getCartProducts()),
+});
+
+export default connect(null, mapDispatchToProps)(CartList);

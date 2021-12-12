@@ -4,9 +4,11 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllProducts, getAllCategories } from './States/products/action';
+import { getAllOrders } from './States/cart/action';
+import jwt from 'jsonwebtoken';
 import Home from './Views/home';
 import Product from './Views/product';
 import Shop from './Views/shop';
@@ -20,15 +22,34 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = (props) => {
-  const { getAllProducts, getAllCategories } = props;
+  const { getAllProducts, getAllCategories, getAllOrders } = props;
+  const [isLogin, setIsLogin] = useState(true);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     getAllProducts();
     getAllCategories();
+    getAllOrders();
     // eslint-disable-next-line
   }, []);
 
-  const isLogin = localStorage.getItem('isLogin');
+  useEffect(() => {
+    if (token) {
+      jwt.verify(token, process.env.REACT_APP_SECRET_TOKEN, (err, decoded) => {
+        if (err && err.message === 'jwt expired') {
+          localStorage.removeItem('token');
+          localStorage.removeItem('isLogin');
+          setIsLogin(false);
+        } else if (decoded) {
+          setIsLogin(true);
+        }
+      });
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('isLogin');
+      setIsLogin(false);
+    }
+  }, [token]);
 
   return (
     <div className='App'>
@@ -38,28 +59,32 @@ const App = (props) => {
             {isLogin ? <Home /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/product/:productName'>
-            <Product />
+            {isLogin ? <Product /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/shop'>
-            <Shop />
+            {isLogin ? <Shop /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/login-user'>
-            <LoginUser />
+            {isLogin ? (
+              <Redirect to='/' />
+            ) : (
+              <LoginUser setIsLogin={setIsLogin} />
+            )}
           </Route>
           <Route path='/register-user'>
             <RegisterUser />
           </Route>
           <Route path='/cart-list'>
-            <CartList />
+            {isLogin ? <CartList /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/payment'>
-            <Payment />
+            {isLogin ? <Payment /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/orders'>
-            <Orders />
+            {isLogin ? <Orders /> : <Redirect to='login-user' />}
           </Route>
           <Route path='/order-details'>
-            <OrderDetails />
+            {isLogin ? <OrderDetails /> : <Redirect to='login-user' />}
           </Route>
         </Switch>
       </Router>
@@ -70,6 +95,7 @@ const App = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   getAllProducts: () => dispatch(getAllProducts()),
   getAllCategories: () => dispatch(getAllCategories()),
+  getAllOrders: () => dispatch(getAllOrders()),
 });
 
 export default connect(null, mapDispatchToProps)(App);

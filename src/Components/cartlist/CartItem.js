@@ -1,45 +1,60 @@
-import React, { useEffect } from 'react';
-import { useSelector, connect } from 'react-redux';
-import { getCartProducts } from '../../States/cart/action';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateProductQuantity, removeProduct } from '../../States/cart/action';
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
 import { BsFillTrashFill } from 'react-icons/bs';
 
 const CartItem = (props) => {
-  const { getCartProducts } = props;
-  const { cart } = useSelector((state) => state.cartReducer);
+  const { product, updateProductQuantity, removeProduct } = props;
+  const [amount, setAmount] = useState(product.quantity);
 
-  useEffect(() => {
-    getCartProducts();
-  }, [getCartProducts]);
+  const addAmount = () => {
+    setAmount(amount + 1);
+    updateProductQuantity(1, product.product_id);
+  };
 
-  return cart.map((product) => {
-    return (
-      <div className='cart-item' key={product.id}>
-        <img
-          src={product.product.image}
-          alt='product'
-          className='product-img'
+  const reduceAmount = () => {
+    setAmount(amount - 1);
+    updateProductQuantity(-1, product.product_id);
+  };
+
+  const removeProductFromCart = () => {
+    alert(`are you sure?`);
+    removeProduct(product.id);
+  };
+
+  return (
+    <div className='cart-item'>
+      <img src={product.product.image} alt='product' className='product-img' />
+      <h5 className='item-name my-auto'>{product.product.title}</h5>
+      <p className='item-price text-center my-auto'>
+        {`$ ${product.product.price}`}
+      </p>
+      <div className='item-amount text-center my-auto'>
+        <AiFillMinusCircle
+          style={{ cursor: 'pointer' }}
+          onClick={reduceAmount}
         />
-        <h5 className='item-name my-auto'>{product.product.title}</h5>
-        <p className='item-price text-center my-auto'>
-          {`$ ${product.product.price}`}
-        </p>
-        <div className='item-amount text-center my-auto'>
-          <AiFillPlusCircle />
-          <span className='amount'>1</span>
-          <AiFillMinusCircle />
-        </div>
-        <span className='total text-center my-auto'>122134</span>
-        <div className='remove text-center my-auto'>
-          <BsFillTrashFill />
-        </div>
+        <span className='amount'>{amount}</span>
+        <AiFillPlusCircle style={{ cursor: 'pointer' }} onClick={addAmount} />
       </div>
-    );
-  });
+      <span className='total text-center my-auto'>{`$ ${
+        amount * product.product.price
+      }`}</span>
+      <div className='remove text-center my-auto'>
+        <BsFillTrashFill
+          style={{ cursor: 'pointer' }}
+          onClick={removeProductFromCart}
+        />
+      </div>
+    </div>
+  );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getCartProducts: () => dispatch(getCartProducts()),
+  updateProductQuantity: (quantity, product_id) =>
+    dispatch(updateProductQuantity(quantity, product_id)),
+  removeProduct: (id) => dispatch(removeProduct(id)),
 });
 
 export default connect(null, mapDispatchToProps)(CartItem);

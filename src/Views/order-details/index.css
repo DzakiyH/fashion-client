@@ -17,7 +17,30 @@
   width: 20%;
   align-items: center;
   font-size: 30px;
+  color: #666;
+}
+
+.order-details .order-detail .order-verified.active,
+.order-details .order-detail .order-sent.active,
+.order-details .order-detail .order-received.active {
   color: aquamarine;
+}
+
+.order-details .products-header {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.order-details .products-header .product-image,
+.order-details .products-header .name,
+.order-details .products-header .quantity {
+  width: 30%;
 }
 
 .order-details .order {
@@ -40,6 +63,12 @@
   width: 30%;
 }
 
-.order-details .order .status-delivery {
+.order-details .order .quantity {
   width: 30%;
+}
+
+.order-details .back-btn {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }
