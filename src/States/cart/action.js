@@ -95,23 +95,23 @@ export const getAllOrders = () => {
   };
 };
 
-export const setOrderProducts = (products) => {
-  const request = axios.post(
-    `http://localhost:8000/order/order-products`,
-    products,
-    {
+export const getUserAddress = () => {
+  try {
+    const request = axios.get('http://localhost:8000/order/address', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
-    }
-  );
-
-  return (dispatch) => {
-    request.then(() => {
-      dispatch({
-        type: 'SET_ORDER_PRODUCTS',
-        payload: products,
-      });
     });
-  };
+
+    return (dispatch) => {
+      request.then((response) => {
+        dispatch({
+          type: 'GET_USER_ADDRESS',
+          payload: response.data.data,
+        });
+      });
+    };
+  } catch (error) {
+    console.log(error.message);
+  }
 };

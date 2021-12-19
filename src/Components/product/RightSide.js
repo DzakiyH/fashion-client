@@ -27,7 +27,11 @@ const RightSide = () => {
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        alert(error.response.data);
+        if (error.response.data.message === 'jwt expired') {
+          alert('you need to login');
+        } else {
+          alert(error.response.data);
+        }
       } else {
         alert(error.message);
       }
@@ -52,7 +56,7 @@ const RightSide = () => {
             {/* <span className='original-price'>$39.99</span> */}
           </div>
           <div className='item-description'>
-            <div className='short-description'>Kacamata tampan dan berani</div>
+            <div className='short-description'>product's short description</div>
             <div className='long-description'>{product.description}</div>
           </div>
           <div className='size-selection'>

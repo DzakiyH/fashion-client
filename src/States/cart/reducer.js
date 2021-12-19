@@ -1,6 +1,8 @@
 const initialState = {
   cart: [],
+  orders: [],
   orderProducts: [],
+  userAddress: {},
   totalPayment: 0,
 };
 
@@ -64,13 +66,8 @@ const cartReducer = (state = initialState, action) => {
     case 'GET_ALL_ORDERS':
       return {
         ...state,
-        orderProducts: payload,
-      };
-
-    case 'SET_ORDER_PRODUCTS':
-      return {
-        ...state,
-        orderProducts: payload,
+        orders: payload[0],
+        orderProducts: payload[1],
       };
 
     case 'ADD_TOTAL':
@@ -83,6 +80,12 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+      };
+
+    case 'GET_USER_ADDRESS':
+      return {
+        ...state,
+        userAddress: payload,
       };
 
     default:

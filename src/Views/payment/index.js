@@ -8,15 +8,17 @@ import OrderDetails from '../../Components/payment/OrderDetails';
 import {
   getCartProducts,
   emptyCart,
-  setOrderProducts,
+  getUserAddress,
 } from '../../States/cart/action';
 import { Card, Button, Form } from 'react-bootstrap';
 import './index.css';
 
 const Payment = (props) => {
   const { history } = useRouter();
-  const { getCartProducts, emptyCart, setOrderProducts } = props;
-  const { cart } = useSelector((state) => state.cartReducer);
+  const { getCartProducts, emptyCart, getUserAddress } = props;
+  const { cart, userAddress, totalPayment } = useSelector(
+    (state) => state.cartReducer
+  );
   const [address, setAddress] = useState({
     first_name: '',
     last_name: '',
@@ -41,13 +43,40 @@ const Payment = (props) => {
 
   useEffect(() => {
     getCartProducts();
-  }, [getCartProducts]);
+    getUserAddress();
+
+    if (userAddress && Object.keys(userAddress).length !== 0) {
+      setAddress({
+        first_name: userAddress.first_name,
+        last_name: userAddress.last_name,
+        address: userAddress.address,
+        province: userAddress.province,
+        city: userAddress.city,
+        postal_code: userAddress.postal_code,
+        phone_number: userAddress.phone_number,
+      });
+    }
+  }, [getCartProducts, getUserAddress, userAddress]);
 
   const orderPayment = async () => {
     try {
-      setOrderProducts(cart);
+      const resOP = await axios.post(
+        'http://localhost:8000/order/order-products',
+        cart,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      if (resOP.data.code !== 201) {
+        alert('error processing order');
+        return;
+      }
+
       emptyCart(cart[0].cart_id);
-      const res = await axios.post(
+
+      const resAD = await axios.post(
         'http://localhost:8000/order/address',
         address,
         {
@@ -57,7 +86,7 @@ const Payment = (props) => {
         }
       );
 
-      if (res.data.code === 201) {
+      if (resAD.data.code === 201) {
         history.push('/order-details');
       } else {
         alert('error processing order');
@@ -166,6 +195,11 @@ const Payment = (props) => {
                 <div>retrieving data...</div>
               )}
 
+              <div className='total-payment'>
+                <div className='total'>total:</div>
+                <div className='amount'>{`$ ${totalPayment}`}</div>
+              </div>
+
               <div className='payment-method'>
                 <div className='payment-source'>
                   <Form.Check
@@ -230,7 +264,7 @@ const Payment = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   getCartProducts: () => dispatch(getCartProducts()),
   emptyCart: (id) => dispatch(emptyCart(id)),
-  setOrderProducts: (products) => dispatch(setOrderProducts(products)),
+  getUserAddress: () => dispatch(getUserAddress()),
 });
 
 export default connect(null, mapDispatchToProps)(Payment);

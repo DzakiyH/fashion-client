@@ -1,16 +1,21 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NavbarLayout from '../../Components/Layout/NavbarLayout';
 import Order from '../../Components/order-details/Order';
+import { getAllOrders } from '../../States/cart/action';
 import { Card, Button } from 'react-bootstrap';
 import { GoVerified } from 'react-icons/go';
 import { MdScheduleSend } from 'react-icons/md';
 import { GiReceiveMoney } from 'react-icons/gi';
 import './index.css';
 
-const OrderDetails = () => {
-  const { orderProducts } = useSelector((state) => state.cartReducer);
+const OrderDetails = ({ getAllOrders }) => {
+  const { orderProducts, orders } = useSelector((state) => state.cartReducer);
+
+  useEffect(() => {
+    getAllOrders();
+  }, [getAllOrders]);
 
   return (
     <NavbarLayout>
@@ -40,8 +45,21 @@ const OrderDetails = () => {
             {orderProducts &&
             orderProducts.length !== 0 &&
             Object.keys(orderProducts).length !== 0 ? (
-              orderProducts.map((product) => {
-                return <Order product={product} key={product.id} />;
+              orderProducts.map((orderProduct, index) => {
+                return (
+                  <div className='orders' key={index}>
+                    <div className='header'>{`Order ${index + 1}`}</div>
+                    {orderProduct.map((product, index) => {
+                      return <Order product={product} key={index} />;
+                    })}
+                    {
+                      (orders && orders.length !== 0,
+                      Object.keys(orders).length !== 0 ? (
+                        <div className='status'>{`Status: ${orders[index].order_status.status}`}</div>
+                      ) : null)
+                    }
+                  </div>
+                );
               })
             ) : (
               <div>you have no order</div>
@@ -58,4 +76,8 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+const mapDispatchToProps = (dispatch) => ({
+  getAllOrders: () => dispatch(getAllOrders()),
+});
+
+export default connect(null, mapDispatchToProps)(OrderDetails);

@@ -56,13 +56,13 @@ const App = (props) => {
       <Router>
         <Switch>
           <Route path='/' exact>
-            {isLogin ? <Home /> : <Redirect to='login-user' />}
+            {isLogin ? <Home /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/product/:productName'>
-            {isLogin ? <Product /> : <Redirect to='login-user' />}
+            {isLogin ? <Product /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/shop'>
-            {isLogin ? <Shop /> : <Redirect to='login-user' />}
+            {isLogin ? <Shop /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/login-user'>
             {isLogin ? (
@@ -75,16 +75,16 @@ const App = (props) => {
             <RegisterUser />
           </Route>
           <Route path='/cart-list'>
-            {isLogin ? <CartList /> : <Redirect to='login-user' />}
+            {isLogin ? <CartList /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/payment'>
-            {isLogin ? <Payment /> : <Redirect to='login-user' />}
+            {isLogin ? <Payment /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/orders'>
-            {isLogin ? <Orders /> : <Redirect to='login-user' />}
+            {isLogin ? <Orders /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/order-details'>
-            {isLogin ? <OrderDetails /> : <Redirect to='login-user' />}
+            {isLogin ? <OrderDetails /> : <Redirect to='/login-user' />}
           </Route>
         </Switch>
       </Router>

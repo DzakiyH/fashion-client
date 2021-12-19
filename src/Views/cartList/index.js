@@ -64,6 +64,10 @@ const CartList = (props) => {
                 your cart is empty
               </div>
             )}
+            <div className='total-payment'>
+              <div className='total1'>total:</div>
+              <div className='total2'>{` $ ${totalPayment}`}</div>
+            </div>
             <div className='button'>
               <Link to={{ pathname: '/shop' }}>
                 <Button variant='primary'>Go Back</Button>
