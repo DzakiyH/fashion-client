@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NavbarLayout from '../../Components/Layout/NavbarLayout';
 import Order from '../../Components/order-details/Order';
@@ -16,6 +17,29 @@ const OrderDetails = ({ getAllOrders }) => {
   useEffect(() => {
     getAllOrders();
   }, [getAllOrders]);
+
+  const onReceived = async (id) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/order/update-order`,
+        {
+          id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+
+      if (res.data.code === 201) {
+        alert('successfully updated data');
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <NavbarLayout>
@@ -55,9 +79,24 @@ const OrderDetails = ({ getAllOrders }) => {
                     {
                       (orders && orders.length !== 0,
                       Object.keys(orders).length !== 0 ? (
-                        <div className='status'>{`Status: ${orders[index].order_status.status}`}</div>
+                        <div className='order-status'>
+                          <div className='status'>{`Status: ${orders[index].order_status.status}`}</div>
+                          {orders[index].resi && orders[index].resi !== '' ? (
+                            <div className='resi'>{`resi: ${orders[index].resi}`}</div>
+                          ) : null}
+                        </div>
                       ) : null)
                     }
+                    {orders[index].order_status.id === 3 ? (
+                      <Button
+                        variant='primary'
+                        style={{ marginTop: '30px' }}
+                        className='received-btn'
+                        onClick={() => onReceived(orders[index].id)}
+                      >
+                        confirm received
+                      </Button>
+                    ) : null}
                   </div>
                 );
               })

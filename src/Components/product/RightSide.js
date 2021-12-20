@@ -30,7 +30,7 @@ const RightSide = () => {
         if (error.response.data.message === 'jwt expired') {
           alert('you need to login');
         } else {
-          alert(error.response.data);
+          alert('you need to login first');
         }
       } else {
         alert(error.message);

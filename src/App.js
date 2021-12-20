@@ -56,13 +56,13 @@ const App = (props) => {
       <Router>
         <Switch>
           <Route path='/' exact>
-            {isLogin ? <Home /> : <Redirect to='/login-user' />}
+            <Home />
           </Route>
           <Route path='/product/:productName'>
-            {isLogin ? <Product /> : <Redirect to='/login-user' />}
+            <Product />
           </Route>
           <Route path='/shop'>
-            {isLogin ? <Shop /> : <Redirect to='/login-user' />}
+            <Shop />
           </Route>
           <Route path='/login-user'>
             {isLogin ? (

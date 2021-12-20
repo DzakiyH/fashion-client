@@ -14,9 +14,8 @@ const SectionTwo = () => {
           <span>New Concept</span> of online shopping
         </div>
         <div className='description'>
-          lorem ipsum will go here. lorem ipsum will go here. lorem ipsum will
-          go here. lorem ipsum will go here. lorem ipsum will go here. lorem
-          ipsum will go here.
+          Here you can find a lot of fashion to accomodate your stylish
+          lifestyle!
         </div>
       </div>
     </div>

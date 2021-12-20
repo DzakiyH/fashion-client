@@ -89,7 +89,7 @@
   width: 30%;
 }
 
-.order-details .orders .status {
+.order-details .orders .order-status {
   font-size: 25px;
   font-weight: 600;
   text-transform: uppercase;
