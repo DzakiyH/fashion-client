@@ -39,7 +39,6 @@ const Login = ({ setIsLogin }) => {
         alert(error.response.data.error);
       } else {
         alert(error.message);
-        console.log('down' + error.message);
       }
     }
   };

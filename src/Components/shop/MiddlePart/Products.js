@@ -21,6 +21,8 @@ const Products = () => {
     });
   };
 
+  console.log(productsShowed);
+
   return (
     <div className='product-list'>
       <div

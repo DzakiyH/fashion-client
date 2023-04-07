@@ -39,8 +39,7 @@ const Register = () => {
       }
     } catch (err) {
       if (err.response && err.response.data) {
-        alert(err.response.data);
-        console.log(err.response.data);
+        alert(err.response.data.error);
       } else {
         alert(err.message);
       }
