@@ -16,7 +16,7 @@ import './index.css';
 const Payment = (props) => {
   const { history } = useRouter();
   const { getCartProducts, emptyCart, getUserAddress } = props;
-  const { cart, userAddress, totalPayment } = useSelector(
+  const { cart, userAddress, totalPayment, orderId } = useSelector(
     (state) => state.cartReducer
   );
   const [address, setAddress] = useState({
@@ -61,8 +61,11 @@ const Payment = (props) => {
   const orderPayment = async () => {
     try {
       const resOP = await axios.post(
-        'http://localhost:8000/order/order-products',
-        cart,
+        `${process.env.REACT_APP_SERVER_HOST}/order/order-products`,
+        {
+          cart,
+          orderId,
+        },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -77,7 +80,7 @@ const Payment = (props) => {
       emptyCart(cart[0].cart_id);
 
       const resAD = await axios.post(
-        'http://localhost:8000/order/address',
+        `${process.env.REACT_APP_SERVER_HOST}/order/address`,
         address,
         {
           headers: {

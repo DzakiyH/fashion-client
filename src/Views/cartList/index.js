@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, connect } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import useRouter from 'use-react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,7 @@ const CartList = (props) => {
   const { getCartProducts } = props;
   const { cart, totalPayment } = useSelector((state) => state.cartReducer);
   const { history } = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCartProducts();
@@ -21,7 +22,7 @@ const CartList = (props) => {
   const setNewOrder = async () => {
     try {
       const res = await axios.post(
-        'http://localhost:8000/order/new-order',
+        `${process.env.REACT_APP_SERVER_HOST}/order/new-order`,
         { total_payment: totalPayment },
         {
           headers: {
@@ -31,6 +32,10 @@ const CartList = (props) => {
       );
 
       if (res.data.code === 201) {
+        dispatch({
+          type: 'UPDATE_ORDER_ID',
+          payload: res.data.data.orderId,
+        });
         history.push('/payment');
       }
     } catch (error) {

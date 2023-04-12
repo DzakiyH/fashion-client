@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getCartProducts = () => {
   try {
-    const request = axios.get('http://localhost:8000/cart', {
+    const request = axios.get(`${process.env.REACT_APP_SERVER_HOST}/cart`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -23,7 +23,7 @@ export const getCartProducts = () => {
 
 export const updateProductQuantity = (quantity, product_id) => {
   const request = axios.put(
-    'http://localhost:8000/cart/update-quantity',
+    `${process.env.REACT_APP_SERVER_HOST}/cart/update-quantity`,
     { quantity, product_id },
     {
       headers: {
@@ -44,7 +44,7 @@ export const updateProductQuantity = (quantity, product_id) => {
 
 export const removeProduct = (id) => {
   const request = axios.delete(
-    `http://localhost:8000/cart/delete-product/${id}`,
+    `${process.env.REACT_APP_SERVER_HOST}/cart/delete-product/${id}`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -63,11 +63,14 @@ export const removeProduct = (id) => {
 };
 
 export const emptyCart = (id) => {
-  const request = axios.delete(`http://localhost:8000/cart/delete-cart/${id}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  });
+  const request = axios.delete(
+    `${process.env.REACT_APP_SERVER_HOST}/cart/delete-cart/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+  );
 
   return (dispatch) => {
     request.then(() => {
@@ -79,7 +82,7 @@ export const emptyCart = (id) => {
 };
 
 export const getAllOrders = () => {
-  const request = axios.get(`http://localhost:8000/order`, {
+  const request = axios.get(`${process.env.REACT_APP_SERVER_HOST}/order`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
@@ -97,11 +100,14 @@ export const getAllOrders = () => {
 
 export const getUserAddress = () => {
   try {
-    const request = axios.get('http://localhost:8000/order/address', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    const request = axios.get(
+      `${process.env.REACT_APP_SERVER_HOST}/order/address`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
 
     return (dispatch) => {
       request.then((response) => {

@@ -28,7 +28,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:8000/auth/user/register',
+        `${process.env.REACT_APP_SERVER_HOST}/auth/user/register`,
         registerData
       );
 

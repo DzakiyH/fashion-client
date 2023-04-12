@@ -21,7 +21,7 @@ const OrderDetails = ({ getAllOrders }) => {
   const onReceived = async (id) => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/order/update-order`,
+        `${process.env.REACT_APP_SERVER_HOST}/order/update-order`,
         {
           id,
         },

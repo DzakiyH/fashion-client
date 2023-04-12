@@ -23,8 +23,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = (props) => {
   const { getAllProducts, getAllCategories, getAllOrders } = props;
-  const [isLogin, setIsLogin] = useState(true);
   const token = localStorage.getItem('token');
+  const [isLogin, setIsLogin] = useState(token ? true : false);
 
   useEffect(() => {
     getAllProducts();
@@ -50,6 +50,8 @@ const App = (props) => {
       setIsLogin(false);
     }
   }, [token]);
+
+  console.log(isLogin);
 
   return (
     <div className='App'>

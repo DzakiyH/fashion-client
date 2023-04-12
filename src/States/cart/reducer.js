@@ -4,6 +4,7 @@ const initialState = {
   orderProducts: [],
   userAddress: {},
   totalPayment: 0,
+  orderId: '',
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -86,6 +87,12 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         userAddress: payload,
+      };
+
+    case 'UPDATE_ORDER_ID':
+      return {
+        ...state,
+        orderId: payload,
       };
 
     default:

@@ -9,7 +9,7 @@ const RightSide = () => {
   const addToCart = async () => {
     try {
       const res = await axios.post(
-        'http://localhost:8000/cart/add-product',
+        `${process.env.REACT_APP_SERVER_HOST}/cart/add-product`,
         {
           product_id: product.id,
         },

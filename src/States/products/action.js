@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getAllProducts = () => {
-  const request = axios.get('http://localhost:8000/product');
+  const request = axios.get(`${process.env.REACT_APP_SERVER_HOST}/product`);
 
   return (dispatch) => {
     request.then((response) => {
@@ -14,7 +14,9 @@ export const getAllProducts = () => {
 };
 
 export const getAllCategories = () => {
-  const request = axios.get('http://localhost:8000/product/category');
+  const request = axios.get(
+    `${process.env.REACT_APP_SERVER_HOST}/product/category`
+  );
 
   return (dispatch) => {
     request.then((response) => {
