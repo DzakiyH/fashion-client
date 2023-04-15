@@ -51,8 +51,6 @@ const App = (props) => {
     }
   }, [token]);
 
-  console.log(isLogin);
-
   return (
     <div className='App'>
       <Router>
