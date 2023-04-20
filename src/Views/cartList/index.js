@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
 import useRouter from 'use-react-router';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,6 @@ const CartList = (props) => {
   const { getCartProducts } = props;
   const { cart, totalPayment } = useSelector((state) => state.cartReducer);
   const { history } = useRouter();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     getCartProducts();
@@ -32,11 +31,7 @@ const CartList = (props) => {
       );
 
       if (res.data.code === 201) {
-        dispatch({
-          type: 'UPDATE_ORDER_ID',
-          payload: res.data.data.orderId,
-        });
-        history.push('/payment');
+        history.push(`/payment/${res.data.data.orderId}`);
       }
     } catch (error) {
       alert(error.message);

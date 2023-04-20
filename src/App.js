@@ -77,7 +77,7 @@ const App = (props) => {
           <Route path='/cart-list'>
             {isLogin ? <CartList /> : <Redirect to='/login-user' />}
           </Route>
-          <Route path='/payment'>
+          <Route path='/payment/:orderId'>
             {isLogin ? <Payment /> : <Redirect to='/login-user' />}
           </Route>
           <Route path='/orders'>

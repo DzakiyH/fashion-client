@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useRouter from 'use-react-router';
+import { useParams } from 'react-router-dom';
 import NavbarLayout from '../../Components/Layout/NavbarLayout';
 import OrderDetails from '../../Components/payment/OrderDetails';
 import {
@@ -15,10 +15,12 @@ import './index.css';
 
 const Payment = (props) => {
   const { history } = useRouter();
+  const { orderId } = useParams();
   const { getCartProducts, emptyCart, getUserAddress } = props;
-  const { cart, userAddress, totalPayment, orderId } = useSelector(
+  const { cart, userAddress, totalPayment } = useSelector(
     (state) => state.cartReducer
   );
+  // definitely too long, try making it cleaner
   const [address, setAddress] = useState({
     first_name: '',
     last_name: '',
@@ -56,7 +58,7 @@ const Payment = (props) => {
         phone_number: userAddress.phone_number,
       });
     }
-  }, [getCartProducts, getUserAddress, userAddress]);
+  }, [getCartProducts, getUserAddress, userAddress.first_name]);
 
   const orderPayment = async () => {
     try {
@@ -93,6 +95,27 @@ const Payment = (props) => {
         history.push('/order-details');
       } else {
         alert('error processing order');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const onCancelPayment = async () => {
+    try {
+      const deleteOrder = await axios.delete(
+        `${process.env.REACT_APP_SERVER_HOST}/order/delete-order/${orderId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+
+      if (deleteOrder.data.code === 200) {
+        history.push('/cart-list');
+      } else {
+        alert('error cancelling order');
       }
     } catch (error) {
       alert(error.message);
@@ -250,9 +273,9 @@ const Payment = (props) => {
             </Form>
 
             <div className='payment-btn'>
-              <Link to={{ pathname: '/shop' }}>
-                <Button variant='danger'>Go Back</Button>
-              </Link>
+              <Button variant='danger' onClick={onCancelPayment}>
+                Cancel
+              </Button>
               <Button variant='primary' onClick={orderPayment}>
                 Proceed
               </Button>

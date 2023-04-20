@@ -14,7 +14,7 @@ const NavbarLayout = (props) => {
     <>
       <Navbar bg='dark' variant='dark'>
         <Container>
-          <Navbar.Brand href='/'>Navbar</Navbar.Brand>
+          <Navbar.Brand href='/'>Fashion Home</Navbar.Brand>
           {isLogin ? (
             <Nav>
               <Nav.Link href='/order-details'>Order</Nav.Link>
