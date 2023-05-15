@@ -24,15 +24,8 @@ const Products = () => {
   return (
     <div className='product-list'>
       <div
-        className='products'
-        style={
-          productsShowed && productsShowed.length !== 0
-            ? {
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                rowGap: '60px',
-              }
-            : null
+        className={
+          productsShowed && productsShowed.length !== 0 ? 'products' : null
         }
       >
         {productsShowed && productsShowed.length !== 0 ? (

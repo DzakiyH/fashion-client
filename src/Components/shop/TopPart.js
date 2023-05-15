@@ -15,11 +15,11 @@ const TopPart = () => {
   return (
     <>
       <div className='top-part'>
-        <div className='shop-name'>Your Shop Name</div>
+        <div className='shop-name'>Fashionlution</div>
         <form className='search'>
           <input
             type='search'
-            placeholder='Product'
+            placeholder='Search'
             onChange={searchInputChange}
           />
           <button className='search-icon'>

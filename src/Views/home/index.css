@@ -3,7 +3,6 @@
 /* INDEX */
 .container-home {
   margin: 0;
-  padding: 0;
   background: linear-gradient(90deg, rgba(231, 240, 242, 0.3) 60%, #ffffff 40%);
   padding: 100px 150px 100px 180px;
 }
@@ -139,4 +138,60 @@
   font-family: 'Ubuntu', sans-serif;
   font-weight: 500;
   margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+  .container-home {
+    padding: 5em 0 0 0;
+  }
+
+  .main-page .section-one .title {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .main-page .section-one .navigation {
+    display: none;
+  }
+
+  .main-page .section-two {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 50px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 2em;
+  }
+
+  .main-page .section-two .left-side,
+  .main-page .section-two .right-side {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-page .section-two .left-side a {
+    margin: auto;
+  }
+
+  .main-page .section-two .right-side .jargon {
+    margin-bottom: 1em;
+  }
+
+  .main-page .section-two .right-side .description {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 2em;
+    text-align: center;
+  }
+
+  .main-page .section-three {
+    align-self: center;
+    width: 100%;
+  }
+
+  .main-page .section-three .pages {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1em;
+  }
 }
