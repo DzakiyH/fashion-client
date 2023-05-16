@@ -172,3 +172,55 @@ select:focus {
   font-size: 20px;
   align-self: center;
 }
+
+@media (max-width: 900px) {
+  .container-inside {
+    padding: 7em 2em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart {
+    position: absolute;
+    font-size: 25px;
+    left: 9%;
+    top: 3em;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .container-inside .left-side .image {
+    position: relative;
+    width: 100%;
+    height: 110vw;
+  }
+
+  .container-inside .right {
+    margin-top: 2em;
+  }
+
+  .container-inside .right .right-side .back-btn {
+    position: absolute;
+    right: 7%;
+    top: 5em;
+  }
+
+  .container-inside .right .right-side .item-name,
+  .container-inside .right .right-side .item-price,
+  .container-inside .right .right-side .item-description,
+  .container-inside .right .right-side .size-selection {
+    width: 100%;
+    text-align: end;
+  }
+
+  .container-inside .right .right-side .item-name {
+    margin-top: 0;
+  }
+
+  .container-inside .right-side .cart-section .cart-btn {
+    padding: 15px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}

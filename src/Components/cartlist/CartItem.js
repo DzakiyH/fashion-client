@@ -25,8 +25,14 @@ const CartItem = (props) => {
 
   return (
     <div className='cart-item'>
-      <img src={product.product.image} alt='product' className='product-img' />
-      <h5 className='item-name my-auto'>{product.product.title}</h5>
+      <div className='cart-product'>
+        <img
+          src={product.product.image}
+          alt='product'
+          className='product-img'
+        />
+        <h5 className='item-name my-auto'>{product.product.title}</h5>
+      </div>
       <p className='item-price text-center my-auto'>
         {`$ ${product.product.price}`}
       </p>

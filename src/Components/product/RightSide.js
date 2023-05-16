@@ -42,8 +42,8 @@ const RightSide = () => {
     <div className='right'>
       {Object.keys(product).length !== 0 ? (
         <div className='right-side'>
-          <Link to={{ pathname: '/shop' }}>
-            <div className='back-btn'>go back</div>
+          <Link className='back-btn' to={{ pathname: '/shop' }}>
+            <div>go back</div>
           </Link>
           <div className='item-name'>
             {/* <span className='item-color'>Color</span> */}
